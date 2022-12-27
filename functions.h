@@ -9,23 +9,33 @@ const int ROWS = 3;
 const int COLS = 5;
 const int MIN_BET = 1;
 
-
 struct SlotsValue
 {
-    int value;
+    int value ={};
 };
 
 class SlotFunctions
 {
 private:
-    static SlotsValue deposit;
-    static SlotsValue balance;
-    static SlotsValue winnings;
-    static SlotsValue bet_amount;
+    SlotsValue deposit;
+    SlotsValue balance;
+    SlotsValue winnings;
+    SlotsValue bet_amount;
 
 public:
-    static int matrix[ROWS][COLS];
-    static void GetGrid();
-};
+    SlotFunctions()
+    {
+        // balance = {};
+        // deposit = {};
+        // winnings = {};
+        // bet_amount = {};
+    }
 
-int SlotFunctions::matrix[ROWS][COLS];
+    int matrix[ROWS][COLS] = {}; // will this reset the instance everytime i create an object?
+    void GetGrid();
+    int GetBalance();
+
+};
+//int SlotFunctions::matrix[ROWS][COLS];
+
+

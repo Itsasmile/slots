@@ -11,6 +11,11 @@ void SlotFunctions::GetGrid(){
                 cout << " " << matrix[i][j] << ",";
             }
             cout << endl;
+      
         }
     }
+};
+
+int SlotFunctions::GetBalance(){
+    return balance.value;
 };
