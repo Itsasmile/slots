@@ -34,6 +34,9 @@ public:
     int matrix[ROWS][COLS] = {}; // will this reset the instance everytime i create an object?
     void GetGrid();
     int GetBalance();
+    int GetWinnings();
+    int GetDeposit();
+    int GetBet();
 
 };
 //int SlotFunctions::matrix[ROWS][COLS];

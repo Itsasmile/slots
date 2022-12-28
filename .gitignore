@@ -5,3 +5,6 @@
 *.ilk
 *.json
 *.vscode
+slots.dSYM/Contents/Resources/DWARF/slots
+slots
+slots.dSYM/Contents/Info.plist
