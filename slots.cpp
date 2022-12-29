@@ -1,4 +1,4 @@
-#include "functions.cpp"
+#include "SlotFunctions.cpp"
 
 using namespace std;
 
