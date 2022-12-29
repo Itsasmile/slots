@@ -1,5 +1,7 @@
 #include <string>
 #include <iostream>
+#include <ctype.h>
+#include <limits>
 
 #pragma once
 
@@ -11,7 +13,7 @@ const int MIN_BET = 1;
 
 struct SlotsValue
 {
-    int value ={5};
+    int value ={};
 };
 
 class SlotFunctions
@@ -25,22 +27,34 @@ private:
 public:
     SlotFunctions()
     {
-        // balance = {};
+        //balance = {};
         // deposit = {};
         // winnings = {};
         // bet_amount = {};
     }
 
     int matrix[ROWS][COLS] = {}; // will this reset the instance everytime i create an object?
+
     void GetGrid();
+    void SetGrid();
+
     int GetBalance();
-    int GetWinnings();
-    int GetDeposit();
-    int GetBet();
     void SetBalance(int x);
+
+    int GetWinnings();
     void SetWinnings(int x);
+
+    int GetDeposit();
     void SetDeposit(int x);
-    void SetBet(int x);
+
+    int GetBet();
+    void SetBet(int x); 
+
+    void Spin();
+    void Game();
+    
+    bool isValue(string x);
+
 
 };
 //int SlotFunctions::matrix[ROWS][COLS];

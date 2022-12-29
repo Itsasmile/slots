@@ -26,6 +26,8 @@ void SlotFunctions::GetGrid(){
     }
 };
 
+
+
 //Find and change balance values
 int SlotFunctions::GetBalance(){
     return this->balance.value;
@@ -41,7 +43,7 @@ int SlotFunctions::GetWinnings(){
 };
 
 void SlotFunctions::SetWinnings(int x){
-    this->balance.value = x;
+    this->winnings.value = x;
 
 };
 //Find and change deposit values
@@ -50,7 +52,7 @@ int SlotFunctions::GetDeposit(){
 };
 
 void SlotFunctions::SetDeposit(int x){
-    this->balance.value = x;
+    this->deposit.value = x;
 
 };
 //Find and change bet values
@@ -59,10 +61,50 @@ int SlotFunctions::GetBet(){
 };
 
 void SlotFunctions::SetBet(int x){
-    this->balance.value = x;
+    this->bet_amount.value = x;
 
 };
 
+bool SlotFunctions::isValue(string x)
+{
+    for (int i = 0; i < x.length(); i++)
+    {
+        if (!isdigit(x[i]))
+        {
+            return false;
+        }
+    }
+    return true;
+};
 
+void SlotFunctions::Spin()
+{
+    string x;
+    bool isValidBet = false;
+    cout << "What amount would you like to bet?" << endl;
+    getline(cin, x);
 
+    do
+    {
+        if (isValue(x))
+        {
 
+            if (stoi(x) >= MIN_BET)
+            {
+                isValidBet = true;
+            }
+            else
+            {
+                cout << "Amount must be greater than 1" << endl;
+                cin >> x;
+            }
+        }
+        else
+        {
+            cout << "Please enter a number." << endl;
+            cin >> x;
+        }
+    } while (!isValidBet);
+    SetBet(stoi(x));
+    cout << "Your bet is $" << GetBet() << endl;
+};
