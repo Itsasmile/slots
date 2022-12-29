@@ -11,7 +11,7 @@ const int MIN_BET = 1;
 
 struct SlotsValue
 {
-    int value ={};
+    int value ={5};
 };
 
 class SlotFunctions
@@ -37,6 +37,10 @@ public:
     int GetWinnings();
     int GetDeposit();
     int GetBet();
+    void SetBalance(int x);
+    void SetWinnings(int x);
+    void SetDeposit(int x);
+    void SetBet(int x);
 
 };
 //int SlotFunctions::matrix[ROWS][COLS];

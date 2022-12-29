@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//Populates the initial matrix
 void SlotFunctions::GetGrid(){
         {
         for (int i = 0; i < ROWS; i++)
@@ -25,18 +26,43 @@ void SlotFunctions::GetGrid(){
     }
 };
 
+//Find and change balance values
 int SlotFunctions::GetBalance(){
-    return balance.value;
+    return this->balance.value;
 };
 
+void SlotFunctions::SetBalance(int x){
+    this->balance.value = x;
+
+};
+//Find and change winnings values
 int SlotFunctions::GetWinnings(){
-    return winnings.value;
+    return this->winnings.value;
 };
 
+void SlotFunctions::SetWinnings(int x){
+    this->balance.value = x;
+
+};
+//Find and change deposit values
 int SlotFunctions::GetDeposit(){
-    return deposit.value;
+    return this->deposit.value;
 };
 
-int SlotFunctions::GetBet(){
-    return bet_amount.value;
+void SlotFunctions::SetDeposit(int x){
+    this->balance.value = x;
+
 };
+//Find and change bet values
+int SlotFunctions::GetBet(){
+    return this->bet_amount.value;
+};
+
+void SlotFunctions::SetBet(int x){
+    this->balance.value = x;
+
+};
+
+
+
+
