@@ -7,6 +7,7 @@ int main()
     int value; 
 
     SlotFunctions SlotFunction;
+    SlotFunction.PrintGrid();
     SlotFunction.SetGrid();
     //SlotFunction.Spin();
     // cout << "You are depositing: $" << SlotFunction.GetDeposit() << endl;

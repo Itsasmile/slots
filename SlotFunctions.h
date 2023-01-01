@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <limits>
 #include<time.h>
+#include<array> 
 
 #pragma once
 
@@ -28,6 +29,7 @@ private:
 public:
     SlotFunctions()
     {
+        RandomizeGrid();
         //balance = {};
         // deposit = {};
         // winnings = {};
@@ -36,8 +38,9 @@ public:
 
     int matrix[ROWS][COLS] = {}; // will this reset the instance everytime i create an object?
 
-    void GetGrid();
-    void SetGrid();
+    void PrintGrid();
+    void RandomizeGrid();
+    bool SetGrid();
 
     int GetBalance();
     void SetBalance(int x);
