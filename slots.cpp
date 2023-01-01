@@ -7,7 +7,8 @@ int main()
     int value; 
 
     SlotFunctions SlotFunction;
-    SlotFunction.Spin();
+    SlotFunction.SetGrid();
+    //SlotFunction.Spin();
     // cout << "You are depositing: $" << SlotFunction.GetDeposit() << endl;
     // cout << "Your bet is: $" << SlotFunction.GetBet() << endl;
     // cout << "You have won: $" << SlotFunction.GetWinnings() << endl;
@@ -15,6 +16,6 @@ int main()
     // cin >> value;
     // SlotFunction.SetBalance(value);
     // cout << "Your current balance is: $" << SlotFunction.GetBalance() << endl;
+    //SlotFunction.GetGrid();
 
-    // SlotFunction.GetGrid();
 }

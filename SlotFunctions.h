@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ctype.h>
 #include <limits>
+#include<time.h>
 
 #pragma once
 

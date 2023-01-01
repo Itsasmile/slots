@@ -5,6 +5,8 @@ using namespace std;
 //Populates the initial matrix
 void SlotFunctions::GetGrid(){
         {
+        int matrix_value;
+        srand(time(0));
         for (int i = 0; i < ROWS; i++)
         {
             for (int j = 0; j < COLS; j++)
@@ -13,6 +15,7 @@ void SlotFunctions::GetGrid(){
                     cout << " ";
 
                 }
+                matrix[i][j] = rand() % 10;
 
                 cout << matrix[i][j];
 
@@ -26,6 +29,12 @@ void SlotFunctions::GetGrid(){
     }
 };
 
+void SlotFunctions::SetGrid(){
+    GetGrid();
+
+    
+    
+};
 
 
 //Find and change balance values
@@ -107,4 +116,7 @@ void SlotFunctions::Spin()
     } while (!isValidBet);
     SetBet(stoi(x));
     cout << "Your bet is $" << GetBet() << endl;
+
 };
+
+
