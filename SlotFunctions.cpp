@@ -29,19 +29,11 @@ void SlotFunctions::PrintGrid(){
 
 };
 
-bool SlotFunctions::SetGrid()
+bool SlotFunctions::CheckGrid()
 {
-            // Loop through matrix compare every trio of numbers, if equal
-
-            /*
-                1    |     2    |    3    |    4    |    5
-                6    |     7    |    8    |    9   |    10
-                11    |     12    |    13    |    14    |    15
-                matrix[0][0]
-                matrix[0][3]
-            */
             int arr[15] = {};
             int index = 0;
+            bool isTrio = false;
             for (int i = 0; i < ROWS; i++)
             {
                 for (int j = 0; j < COLS; j++)
@@ -50,20 +42,16 @@ bool SlotFunctions::SetGrid()
                     index++;
                 }
             }
+            int n = sizeof(arr) / sizeof(arr[index]);
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < n - 2; i += 3)
             {
-                cout << arr[i];
+                if (arr[i] == arr[i + 1] && arr[i + 1] == arr[i + 2])
+                {
+                    isTrio = true;
+                }
             }
-
-            if (arr[0] == arr[1] && arr[1] == arr[2])
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return isTrio;
 };
 
 void SlotFunctions::RandomizeGrid(){
@@ -72,11 +60,10 @@ void SlotFunctions::RandomizeGrid(){
         {
             for (int j = 0; j < COLS; j++)
             {   
-            matrix[i][j] = rand() % 10;
+            matrix[i][j] = rand() % 5;
             }
         }
 };
-
 
 //Find and change balance values
 int SlotFunctions::GetBalance(){
@@ -87,6 +74,11 @@ void SlotFunctions::SetBalance(int x){
     this->balance.value = x;
 
 };
+
+void SlotFunctions::SubtractBalance(int x){
+    this->balance.value = GetBalance() - x;
+};
+
 //Find and change winnings values
 int SlotFunctions::GetWinnings(){
     return this->winnings.value;
@@ -96,13 +88,39 @@ void SlotFunctions::SetWinnings(int x){
     this->winnings.value = x;
 
 };
+
+void SlotFunctions::CheckWin()
+{
+    int arr[15] = {};
+    int index = 0;
+    for (int i = 0; i < ROWS; i++)
+    {
+            for (int j = 0; j < COLS; j++)
+            {
+            arr[index] = matrix[i][j];
+            index++;
+            }
+    }
+    int n = sizeof(arr) / sizeof(arr[index]);
+
+    for (int i = 0; i < n - 2; i += 3)
+    {
+            if (arr[i] == arr[i + 1] && arr[i + 1] == arr[i + 2])
+            {
+            cout << "Congratulations, you won! The winning values were: ";
+            cout << arr[i] << arr[i+1] << arr[i+2] << endl;
+            }
+    }
+};
+
 //Find and change deposit values
 int SlotFunctions::GetDeposit(){
     return this->deposit.value;
 };
 
 void SlotFunctions::SetDeposit(int x){
-    this->deposit.value = x;
+    this->deposit.value = GetBalance() + x;
+    this->balance.value = GetBalance() + x;
 
 };
 //Find and change bet values
@@ -129,35 +147,40 @@ bool SlotFunctions::isValue(string x)
 
 void SlotFunctions::Spin()
 {
-    string x;
+    string bet;
     bool isValidBet = false;
+    cout << "Current Balance: $" << GetBalance() << endl;
     cout << "What amount would you like to bet?" << endl;
-    getline(cin, x);
-
     do
     {
-        if (isValue(x))
+
+        
+        cin.ignore();
+        //cin >> bet;
+        getline(cin, bet);
+
+        
+        if (isValue(bet))
         {
 
-            if (stoi(x) >= MIN_BET)
+            if (stoi(bet) >= MIN_BET)
             {
                 isValidBet = true;
             }
             else
             {
                 cout << "Amount must be greater than 1" << endl;
-                cin >> x;
+                cin >> bet;
             }
         }
         else
         {
             cout << "Please enter a number." << endl;
-            cin >> x;
+            cin >> bet;
         }
+    
     } while (!isValidBet);
-    SetBet(stoi(x));
-    cout << "Your bet is $" << GetBet() << endl;
-
+    SetBet(stoi(bet));
+    SubtractBalance(stoi(bet));
+    cout << "You have bet $" << GetBet() << ". Current Balance: $" << GetBalance() << endl;
 };
-
-

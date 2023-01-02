@@ -12,6 +12,7 @@ using namespace std;
 const int ROWS = 3;
 const int COLS = 5;
 const int MIN_BET = 1;
+const int ARRAY_SIZE = ROWS*COLS;
 
 struct SlotsValue
 {
@@ -40,13 +41,15 @@ public:
 
     void PrintGrid();
     void RandomizeGrid();
-    bool SetGrid();
+    bool CheckGrid();
 
     int GetBalance();
     void SetBalance(int x);
+    void SubtractBalance(int x);
 
     int GetWinnings();
     void SetWinnings(int x);
+    void CheckWin();
 
     int GetDeposit();
     void SetDeposit(int x);

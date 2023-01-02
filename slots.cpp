@@ -4,11 +4,29 @@ using namespace std;
 
 int main()
 {
-    int value; 
+    int value;
+    int deposit;
+    string game;
+    bool endGame = false;
 
     SlotFunctions SlotFunction;
+    cout << "Welcome to the casino, your starting balance is: $" << SlotFunction.GetBalance() << " , please input an amount to deposit into your wallet." << endl;
+    cin >> deposit;
+    SlotFunction.SetDeposit(deposit);
+    cout << "You have deposited $" << SlotFunction.GetDeposit() << " into your wallet." << endl;
+    do{
+    SlotFunction.Spin();
     SlotFunction.PrintGrid();
-    SlotFunction.SetGrid();
+    SlotFunction.CheckGrid();
+    SlotFunction.CheckWin();
+    cout << "Hit e to continue playing, otherwise hit anything else to end the game" << endl;
+    cin >> game;
+
+    if (game == "e")
+        ///cin.ignore();
+        endGame = true;    
+        SlotFunction.RandomizeGrid();
+    }while (endGame);
     //SlotFunction.Spin();
     // cout << "You are depositing: $" << SlotFunction.GetDeposit() << endl;
     // cout << "Your bet is: $" << SlotFunction.GetBet() << endl;
