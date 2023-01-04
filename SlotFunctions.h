@@ -45,7 +45,7 @@ public:
     bool CheckGrid();
 
     int GetBalance();
-    void SetBalance(int x);
+    void AddBalance(int x);
     void SubtractBalance(int x);
 
     int GetWinnings();
