@@ -79,6 +79,8 @@ void SlotFunctions::SubtractBalance(int x){
     this->balance.value = GetBalance() - x;
 };
 
+
+
 //Find and change winnings values
 int SlotFunctions::GetWinnings(){
     return this->winnings.value;
@@ -89,10 +91,21 @@ void SlotFunctions::SetWinnings(int x){
 
 };
 
+void SlotFunctions::AddWinnings(int x){
+    this->winnings.value = GetWinnings() + x;
+    this ->balance.value = GetBalance() + x;
+
+};
+
 void SlotFunctions::CheckWin()
 {
     int arr[15] = {};
     int index = 0;
+    int winnings = GetBet();
+    int winning_row = 0;
+    ostringstream temp;
+    string win;
+
     for (int i = 0; i < ROWS; i++)
     {
             for (int j = 0; j < COLS; j++)
@@ -103,12 +116,16 @@ void SlotFunctions::CheckWin()
     }
     int n = sizeof(arr) / sizeof(arr[index]);
 
-    for (int i = 0; i < n - 2; i += 3)
+    for (int i = 0; i < ROWS; i++)
     {
-            if (arr[i] == arr[i + 1] && arr[i + 1] == arr[i + 2])
+            for (int j = 0; j < COLS - 2; j++)
             {
-            cout << "Congratulations, you won! The winning values were: ";
-            cout << arr[i] << arr[i+1] << arr[i+2] << endl;
+            if (matrix[i][j] == matrix[i][j + 1] && matrix[i][j + 1] == matrix[i][j + 2]) // add a loop maybe, and add each group of values to a row, to print the winning row.
+            {
+                AddWinnings(winnings);
+                cout << "Congratulations, you won $" << GetBet() << " ! The winning values were: " /*<< ", on row " << winning_row + 1 */;
+                cout << matrix[i][j] << matrix[i][j + 1] << matrix[i][j + 2] << " on row " << i + 1 << endl;
+            }
             }
     }
 };
@@ -135,52 +152,50 @@ void SlotFunctions::SetBet(int x){
 
 bool SlotFunctions::isValue(string x)
 {
+    if (x.length() < 1)
+            return false;
+
     for (int i = 0; i < x.length(); i++)
     {
-        if (!isdigit(x[i]))
-        {
+            if (isdigit(x[i]) == 0)
+            {
             return false;
-        }
+            }
     }
     return true;
 };
 
 void SlotFunctions::Spin()
 {
-    string bet;
-    bool isValidBet = false;
-    cout << "Current Balance: $" << GetBalance() << endl;
-    cout << "What amount would you like to bet?" << endl;
-    do
-    {
-
-        
-        cin.ignore();
-        //cin >> bet;
-        getline(cin, bet);
-
-        
-        if (isValue(bet))
+        string bet;
+        bool isValidBet = false;
+        cout << "Current Balance: $" << GetBalance() << endl;
+        cout << "What amount would you like to bet?" << endl;
+        do
         {
 
+            getline(cin, bet);
+            // cout << "Bet is: " << bet << " " << isValue(bet) << endl;
+
+            if (isValue(bet))
+            {
+            int x;
             if (stoi(bet) >= MIN_BET)
             {
                 isValidBet = true;
             }
+
             else
             {
                 cout << "Amount must be greater than 1" << endl;
-                cin >> bet;
             }
-        }
-        else
-        {
+            }
+            else
+            {
             cout << "Please enter a number." << endl;
-            cin >> bet;
-        }
-    
-    } while (!isValidBet);
-    SetBet(stoi(bet));
-    SubtractBalance(stoi(bet));
-    cout << "You have bet $" << GetBet() << ". Current Balance: $" << GetBalance() << endl;
+            }
+        } while (!isValidBet);
+        SetBet(stoi(bet));
+        SubtractBalance(stoi(bet));
+        cout << "You have bet $" << GetBet() << ". Current Balance: $" << GetBalance() << endl;
 };

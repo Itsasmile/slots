@@ -10,6 +10,7 @@ int main()
     bool endGame = false;
 
     SlotFunctions SlotFunction;
+    cout << SlotFunction.isValue("\r") << endl;
     cout << "Welcome to the casino, your starting balance is: $" << SlotFunction.GetBalance() << " , please input an amount to deposit into your wallet." << endl;
     cin >> deposit;
     SlotFunction.SetDeposit(deposit);
@@ -22,12 +23,15 @@ int main()
     cout << "Hit e to continue playing, otherwise hit anything else to end the game" << endl;
     cin >> game;
 
-    if (game == "e")
+    if (game == "e"){
         ///cin.ignore();
         endGame = true;    
         SlotFunction.RandomizeGrid();
+    }
+    else
+        return 0;
     }while (endGame);
-    //SlotFunction.Spin();
+    // //SlotFunction.Spin();
     // cout << "You are depositing: $" << SlotFunction.GetDeposit() << endl;
     // cout << "Your bet is: $" << SlotFunction.GetBet() << endl;
     // cout << "You have won: $" << SlotFunction.GetWinnings() << endl;
@@ -35,6 +39,6 @@ int main()
     // cin >> value;
     // SlotFunction.SetBalance(value);
     // cout << "Your current balance is: $" << SlotFunction.GetBalance() << endl;
-    //SlotFunction.GetGrid();
+    // SlotFunction.GetGrid();
 
 }

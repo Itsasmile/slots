@@ -2,8 +2,9 @@
 #include <iostream>
 #include <ctype.h>
 #include <limits>
-#include<time.h>
-#include<array> 
+#include <time.h>
+#include <array> 
+#include <sstream>
 
 #pragma once
 
@@ -49,6 +50,7 @@ public:
 
     int GetWinnings();
     void SetWinnings(int x);
+    void AddWinnings(int x);
     void CheckWin();
 
     int GetDeposit();
