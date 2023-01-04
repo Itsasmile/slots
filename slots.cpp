@@ -6,12 +6,13 @@ int main()
 {
     int value;
     int deposit;
+    
     string game;
     bool endGame = false;
 
     SlotFunctions SlotFunction;
     cout << SlotFunction.isValue("\r") << endl;
-    cout << "Welcome to the casino, your starting balance is: $" << SlotFunction.GetBalance() << " , please input an amount to deposit into your wallet." << endl;
+    cout << "Welcome to the casino, your starting balance is: $" << SlotFunction.GetBalance() << ", please input an amount to deposit into your wallet." << endl;
     cin >> deposit;
     SlotFunction.SetDeposit(deposit);
     cout << "You have deposited $" << SlotFunction.GetDeposit() << " into your wallet." << endl;
@@ -24,13 +25,17 @@ int main()
     cin >> game;
 
     if (game == "e"){
-        ///cin.ignore();
-        endGame = true;    
+        /// cin.ignore();
+        // endGame = false;
         SlotFunction.RandomizeGrid();
     }
     else
-        return 0;
-    }while (endGame);
+    {
+        cout << "Exiting game......." << endl;
+        break;
+    }
+
+    }while (!endGame);
     // //SlotFunction.Spin();
     // cout << "You are depositing: $" << SlotFunction.GetDeposit() << endl;
     // cout << "Your bet is: $" << SlotFunction.GetBet() << endl;
