@@ -17,44 +17,44 @@ const int ARRAY_SIZE = ROWS * COLS;
 
 struct SlotsValue
 {
-    int value = {};
+	int value = {};
 };
 
 class SlotFunctions
 {
 private:
-    SlotsValue deposit;
-    SlotsValue balance;
-    SlotsValue winnings;
-    SlotsValue bet_amount;
+	SlotsValue deposit;
+	SlotsValue balance;
+	SlotsValue winnings;
+	SlotsValue bet_amount;
 
 public:
-    SlotFunctions()
-    {
-        RandomizeGrid();
-    }
+	SlotFunctions()
+	{
+		RandomizeGrid();
+	}
 
-    int matrix[ROWS][COLS] = {}; // will this reset the instance everytime i create an object?
+	int matrix[ROWS][COLS] = {}; // will this reset the instance everytime i create an object?
 
-    void PrintGrid();
-    void RandomizeGrid();
+	void PrintGrid();
+	void RandomizeGrid();
 
-    int GetBalance();
-    void AddBalance(int x);
-    void SubtractBalance(int x);
+	int GetBalance();
+	void AddBalance(int x);
+	void SubtractBalance(int x);
 
-    int GetWinnings();
-    void SetWinnings(int x);
-    void AddWinnings(int x);
-    void CheckWin();
+	int GetWinnings();
+	void SetWinnings(int x);
+	void AddWinnings(int x);
+	void CheckWin();
 
-    int GetDeposit();
-    void SetDeposit(int x);
+	int GetDeposit();
+	void SetDeposit(int x);
 
-    int GetBet();
-    void SetBet(int x);
+	int GetBet();
+	void SetBet(int x);
 
-    void Spin();
+	void Spin();
 
-    bool isValue(string x);
+	bool isValue(string x);
 };
