@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <limits>
 #include <time.h>
-#include <array> 
+#include <array>
 #include <sstream>
 
 #pragma once
@@ -13,11 +13,11 @@ using namespace std;
 const int ROWS = 3;
 const int COLS = 5;
 const int MIN_BET = 1;
-const int ARRAY_SIZE = ROWS*COLS;
+const int ARRAY_SIZE = ROWS * COLS;
 
 struct SlotsValue
 {
-    int value ={};
+    int value = {};
 };
 
 class SlotFunctions
@@ -52,13 +52,9 @@ public:
     void SetDeposit(int x);
 
     int GetBet();
-    void SetBet(int x); 
+    void SetBet(int x);
 
     void Spin();
-    
+
     bool isValue(string x);
-
-
 };
-
-
