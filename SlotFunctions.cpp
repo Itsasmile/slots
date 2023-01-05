@@ -56,7 +56,6 @@ void SlotFunctions::SubtractBalance(int x){
 };
 
 
-
 //Find and change winnings values
 int SlotFunctions::GetWinnings(){
     return this->winnings.value;
@@ -95,7 +94,6 @@ void SlotFunctions::CheckWin()
             {
             if (matrix[i][j] == matrix[i][j + 1] && matrix[i][j + 1] == matrix[i][j + 2]) // add a loop maybe, and add each group of values to a row, to print the winning row.
             {
-                // cout << "THIS SHOULD BE THE NEW BALANCE BUT WHY NOT: $" << winnings + GetBalance();
                 won = true;
                 SetWinnings(winnings);
                 AddWinnings(winnings);
@@ -145,13 +143,12 @@ bool SlotFunctions::isValue(string x)
     return true;
 };
 
-
 void SlotFunctions::Spin()
 {
     string bet;
     string exitGame;
     bool isValidBet = false;
-    cout << "\nCurrent Balance: $" << GetBalance() << endl;
+    cout << "\nCurrent Balance: $" << GetBalance() << "." << endl;
     cout << "What amount would you like to bet?" << endl;
     do
     {
@@ -170,7 +167,7 @@ void SlotFunctions::Spin()
             if (isValue(bet))
             {
                 AddBalance(stoi(bet));
-                cout << "You have added $" << bet << " to your balance. Your new Balance is: $" << GetBalance() << "." << endl;
+                cout << "You have added $" << bet << " to your balance. Your new balance is: $" << GetBalance() << "." << endl;
                 continue;
             }
             }
@@ -178,15 +175,14 @@ void SlotFunctions::Spin()
             if (!isValue(bet))
             {
             cout << "Please enter a number." << endl;
-            isValidBet = false;
             continue;
             }
+            
             if (stoi(bet) >= MIN_BET)
             {
             if (GetBalance() - stoi(bet) < 0)
             {
                 cout << "You have insufficient funds for this bet. Your current balance is: $" << GetBalance() << ". Press a to add funds or press q to end game." << endl;
-
                 continue;
             }
 
@@ -197,8 +193,10 @@ void SlotFunctions::Spin()
             {
             cout << "Amount must be greater than 1." << endl;
             }
+
     } while (!isValidBet);
+    
     SetBet(stoi(bet));
     SubtractBalance(stoi(bet));
-    cout << "\nYou have bet $" << GetBet() << ". Current Balance: $" << GetBalance() << endl;
+    cout << "\nYou have bet $" << GetBet() << ". Current balance: $" << GetBalance() << endl;
 };

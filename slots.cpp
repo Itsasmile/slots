@@ -21,7 +21,7 @@ int main()
         SlotFunction.PrintGrid();
         cout << endl;
         SlotFunction.CheckWin();
-        cout << "Hit e to continue playing, otherwise hit anything else to end the game" << endl;
+        cout << "Hit e to continue playing, otherwise hit anything else to end the game." << endl;
         cin >> game;
 
         if (game == "e")
@@ -29,10 +29,10 @@ int main()
             SlotFunction.RandomizeGrid();
         }
         else
-        {
-            cout << "Exiting game......." << endl;
-            cout << "Game has ended." << endl;
-            break;
+        { 
+            cout << "\nExiting game......." << endl;
+            cout << "Game has ended. You left with a balance of: $" << SlotFunction.GetBalance() << endl;
+            endGame = true;
         }
 
     } while (!endGame);
