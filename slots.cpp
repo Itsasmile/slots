@@ -29,7 +29,7 @@ int main()
             SlotFunction.RandomizeGrid();
         }
         else
-        { 
+        {
             cout << "\nExiting game......." << endl;
             cout << "Game has ended. You left with a balance of: $" << SlotFunction.GetBalance() << endl;
             endGame = true;
