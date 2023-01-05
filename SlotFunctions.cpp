@@ -29,83 +29,85 @@ void SlotFunctions::PrintGrid(){
 
 };
 
-
-void SlotFunctions::RandomizeGrid(){
-        srand(time(0)); 
-        for (int i = 0; i < ROWS; i++)
-        {
-            for (int j = 0; j < COLS; j++)
-            {   
-            matrix[i][j] = rand() % 5;
+void SlotFunctions::RandomizeGrid()
+{
+            srand(time(0));
+            for (int i = 0; i < ROWS; i++)
+            {
+                for (int j = 0; j < COLS; j++)
+                {
+                    matrix[i][j] = rand() % 5;
+                }
             }
-        }
 };
 
-//Find and change balance values
-int SlotFunctions::GetBalance(){
-    return this->balance.value;
+// Find and change balance values
+int SlotFunctions::GetBalance()
+{
+            return this->balance.value;
 };
 
-void SlotFunctions::AddBalance(int x){
-    this->balance.value = GetBalance() + x;
-
+void SlotFunctions::AddBalance(int x)
+{
+            this->balance.value = GetBalance() + x;
 };
 
-void SlotFunctions::SubtractBalance(int x){
-    this->balance.value = GetBalance() - x;
+void SlotFunctions::SubtractBalance(int x)
+{
+            this->balance.value = GetBalance() - x;
 };
 
-
-//Find and change winnings values
-int SlotFunctions::GetWinnings(){
-    return this->winnings.value;
+// Find and change winnings values
+int SlotFunctions::GetWinnings()
+{
+            return this->winnings.value;
 };
 
-void SlotFunctions::SetWinnings(int x){
-    this->winnings.value = x;
-
+void SlotFunctions::SetWinnings(int x)
+{
+            this->winnings.value = x;
 };
 
-void SlotFunctions::AddWinnings(int x){
-    this ->balance.value += (GetBet()*2);
-
+void SlotFunctions::AddWinnings(int x)
+{
+            this->balance.value += (GetBet() * 2);
 };
 
 void SlotFunctions::CheckWin()
 {
-    int arr[15] = {};
-    int index = 0;
-    int winnings = GetBet();
-    bool won = false;
+            int arr[15] = {};
+            int index = 0;
+            int winnings = GetBet();
+            bool won = false;
 
-    for (int i = 0; i < ROWS; i++)
-    {
-            for (int j = 0; j < COLS; j++)
+            for (int i = 0; i < ROWS; i++)
             {
-            arr[index] = matrix[i][j];
-            index++;
+                for (int j = 0; j < COLS; j++)
+                {
+                    arr[index] = matrix[i][j];
+                    index++;
+                }
             }
-    }
-    int n = sizeof(arr) / sizeof(arr[index]);
+            int n = sizeof(arr) / sizeof(arr[index]);
 
-    for (int i = 0; i < ROWS; i++)
-    {
-            for (int j = 0; j < COLS - 2; j++)
+            for (int i = 0; i < ROWS; i++)
             {
-            if (matrix[i][j] == matrix[i][j + 1] && matrix[i][j + 1] == matrix[i][j + 2]) // add a loop maybe, and add each group of values to a row, to print the winning row.
+                for (int j = 0; j < COLS - 2; j++)
+                {
+                    if (matrix[i][j] == matrix[i][j + 1] && matrix[i][j + 1] == matrix[i][j + 2]) // add a loop maybe, and add each group of values to a row, to print the winning row.
+                    {
+                        won = true;
+                        SetWinnings(winnings);
+                        AddWinnings(winnings);
+                        cout << "Congratulations, you won $" << (GetBet() * 2) << "! The winning values were: ";
+                        cout << matrix[i][j] << matrix[i][j + 1] << matrix[i][j + 2] << " on row " << i + 1 << "." << endl;
+                    }
+                }
+            }
+            if (!won)
             {
-                won = true;
-                SetWinnings(winnings);
-                AddWinnings(winnings);
-                cout << "Congratulations, you won $" << (GetBet() * 2) << "! The winning values were: ";
-                cout << matrix[i][j] << matrix[i][j + 1] << matrix[i][j + 2] << " on row " << i + 1 << "." << endl;
+                cout << "You lost! Better luck next time!" << endl;
             }
-            }
-    }
-    if (!won)
-    {
-            cout << "You lost! Better luck next time!" << endl;
-    }
 };
 
 //Find and change deposit values
@@ -177,7 +179,7 @@ void SlotFunctions::Spin()
             cout << "Please enter a number." << endl;
             continue;
             }
-            
+
             if (stoi(bet) >= MIN_BET)
             {
             if (GetBalance() - stoi(bet) < 0)
@@ -195,7 +197,7 @@ void SlotFunctions::Spin()
             }
 
     } while (!isValidBet);
-    
+
     SetBet(stoi(bet));
     SubtractBalance(stoi(bet));
     cout << "\nYou have bet $" << GetBet() << ". Current balance: $" << GetBalance() << endl;
