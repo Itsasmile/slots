@@ -1,19 +1,26 @@
 #include "SlotFunctions.cpp"
+#include <string>
+#include <iostream>
+#include <ctype.h>
+#include <limits>
+#include <time.h>
+#include <array>
+#include <sstream>
 
 using namespace std;
 
 int main()
 {
 	int value;
-	int deposit;
+	string deposit;
 
 	string game;
 	bool endGame = false;
 
 	SlotFunctions SlotFunction;
 	cout << "Welcome to the casino, your starting balance is: $" << SlotFunction.GetBalance() << ", please input an amount to deposit into your wallet." << endl;
-	cin >> deposit;
-	SlotFunction.SetDeposit(deposit);
+	getline(cin, deposit);
+	SlotFunction.SetDeposit(stoi(deposit));
 	cout << "You have deposited $" << SlotFunction.GetDeposit() << " into your wallet." << endl;
 	do
 	{
@@ -22,7 +29,7 @@ int main()
 		cout << endl;
 		SlotFunction.CheckWin();
 		cout << "Hit e to continue playing, otherwise hit anything else to end the game." << endl;
-		cin >> game;
+		getline(cin, game);
 
 		if (game == "e")
 		{
